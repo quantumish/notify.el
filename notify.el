@@ -1,9 +1,10 @@
 (setq notif-stack '())
 
 (defun create-text-notif (string)
-  (setq notif-stack (cons (+ (length notif-stack) 1) notif-stack))
+  (setq notif-stack (cons (+ (length notif-stack) 0) notif-stack))
   (defun temp-poshandler (_info)
-    '(-15 . (+ 15 (* 90 (car notif-stack)))))
+     (cons -15  (+ 15 (* 90 (car notif-stack)))))
+  
   (when (posframe-workable-p)
     (posframe-show (concat "notif" (number-to-string (car notif-stack)))
                  :string string
@@ -16,8 +17,8 @@
                  :min-width 50
                  :min-height 4
                  :internal-border-color "black"
-                 :internal-border-width 1))
-  )
-  
-    
+                 :internal-border-width 1)))
+
+(create-text-notif "test")
+(create-text-notif "test")
 (create-text-notif "test")
